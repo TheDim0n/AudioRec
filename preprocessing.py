@@ -9,7 +9,7 @@ class Audio():
         self.path = path
         self.data = li.load(self.path, sr=self.sr)[0]
         self.e_parts = self.get_energy()
-        self.label = int(self.path.split('\\')[-4]) - 1
+        self.label = int(self.path.split('\\')[-3].split()[0])
         
     def get_energy(self):
         x = tf.keras.preprocessing.sequence.pad_sequences(
