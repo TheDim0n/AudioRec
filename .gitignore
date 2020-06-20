@@ -15,6 +15,7 @@ downloads/
 eggs/
 .eggs/
 lib/
+Lib/
 lib64/
 parts/
 sdist/
@@ -100,6 +101,7 @@ celerybeat-schedule
 .env
 .venv
 env/
+venv
 venv/
 ENV/
 env.bak/
@@ -122,3 +124,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# additional
+AudioData
+models
+tmp
+TFJS_model
