@@ -131,5 +131,3 @@ dmypy.json
 # additional
 AudioData
 models
-tmp
-TFJS_model
