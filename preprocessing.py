@@ -64,3 +64,6 @@ def augment_data(y, sr):
         new += add_noise(i)
     data += new
     return data
+
+if __name__ == "__main__":
+    pass
