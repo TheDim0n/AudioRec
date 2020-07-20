@@ -129,4 +129,5 @@ dmypy.json
 .vscode
 
 # additional
+*.zip
 AudioData
