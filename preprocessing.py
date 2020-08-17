@@ -48,8 +48,8 @@ def pitch_shift(y, sr):
     return [y1, y2]
 
 def add_noise(y):
-    wn = np.random.randn(len(y))
-    y_wn = y + 0.0025*wn
+    wn = np.random.random_sample(len(y))
+    y_wn = y + 0.005*wn
     return [y_wn]
 
 def augment_data(y, sr):
