@@ -9,7 +9,7 @@ class Audio():
         self.path = path
         self.data = li.load(self.path, sr=self.sr)[0]
         self.e_parts = self.get_energy()
-        self.label = int(self.path.split('/')[-3].split()[0])
+        self.label = int(self.path.split('\\')[-3].split()[0])
         
     def pitch_shift(self, y=[]):
         if len(y) == 0:
@@ -27,9 +27,10 @@ class Audio():
     
     def augmented(self):
         augments = [self.data]
-        augments += self.add_noise()
-        augments += self.pitch_shift(augments[0])
-        augments += self.pitch_shift(augments[1])
+        if self.label == 1:
+            augments += self.add_noise()
+            augments += self.pitch_shift(augments[0])
+            augments += self.pitch_shift(augments[1])
         data = []
         for i in augments:
             data.append(self.get_energy(i))
