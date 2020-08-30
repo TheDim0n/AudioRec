@@ -24,7 +24,7 @@ class Audio():
             y = self.data
         wn = np.random.random_sample(len(y))
         y_wn = y + 0.005 * wn
-        return y_wn
+        return [y_wn]
 
     def reverb(self, sound, start, shift, fade, times):
         result = np.copy(sound)
