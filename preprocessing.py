@@ -68,6 +68,7 @@ class Audio():
     def get_energy(self, y=[]):
         if len(y) == 0:
             y = self.data
+        y, _ = li.effects.trim(y)
         x = tf.keras.preprocessing.sequence.pad_sequences(
             [y],
             maxlen=int(self.sr * 0.4),
