@@ -43,12 +43,12 @@ class Audio():
             currentEcho = np.concatenate(
                 (np.zeros(int(sampleRate * shift)), currentEcho[:currentEcho.size - int(sampleRate * shift)])) * fade
             shift *= shiftProgress
-            result = result + self.reverb(currentEcho, int(sampleRate * 0.045), int(sampleRate * 0.0001), 0.3, 50)
+            tmp = self.reverb(currentEcho, int(sampleRate * 0.045), int(sampleRate * 0.0001), 0.3, 50)
+            result = result + tmp
         return result
 
     def reverbAugment(self, sound):
-        return [self.echo(sound, self.sr, 0.1, 1.5, 0.4, 0), self.echo(sound, self.sr, 0.1, 1.5, 0.4, 2),
-                self.echo(sound, self.sr, 0.1, 1.5, 0.4, 4)]
+        return [self.echo(sound, self.sr, 0.1, 1.5, 0.4, 0), self.echo(sound, self.sr, 0.1, 1.5, 0.4, 2)]
 
     def augmented(self):
         augments = [self.data]
