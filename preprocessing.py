@@ -71,7 +71,7 @@ class Audio():
         y, _ = li.effects.trim(y)
         x = tf.keras.preprocessing.sequence.pad_sequences(
             [y],
-            maxlen=int(self.sr * 0.4),
+            maxlen=int(self.sr * 1.0),
             padding='post',
             truncating='post',
             dtype='float32'
