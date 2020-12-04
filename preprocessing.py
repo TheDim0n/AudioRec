@@ -10,7 +10,13 @@ class Audio():
         self.path = path
         self.data = li.load(self.path, sr=self.sr)[0]
         self.e_parts = self.get_energy()
-        self.label = int(self.path.split('\\')[-3].split()[0])
+        self.label = self.get_label()
+        
+    def get_label(self):
+        label = int(self.path.split('\\')[-3].split()[0])
+        if label > 0:
+            label = 1
+        return label
 
     def pitch_shift(self, y=[]):
         if len(y) == 0:
@@ -50,6 +56,18 @@ class Audio():
     def reverbAugment(self, sound):
         return [self.echo(sound, self.sr, 0.1, 1.5, 0.4, 0), self.echo(sound, self.sr, 0.1, 1.5, 0.4, 2)]
 
+    def augmented_source(self):
+        augments = [self.data]
+        if self.label == 1:
+            augments += self.add_noise()
+            augments += self.pitch_shift(augments[0])
+            augments += self.pitch_shift(augments[1])
+            tmp = []
+            for sound in augments:
+                tmp += self.reverbAugment(sound)
+            augments += tmp
+        return augments
+    
     def augmented(self):
         augments = [self.data]
         if self.label == 1:
