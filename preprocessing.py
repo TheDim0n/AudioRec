@@ -6,7 +6,7 @@ import tensorflow as tf
 
 class Audio():
     def __init__(self, path):
-        self.sr = 44100
+        self.sr = 16000
         self.path = path
         self.data = li.load(self.path, sr=self.sr)[0]
         self.e_parts = self.get_energy()
@@ -98,7 +98,7 @@ class Audio():
         x_filtered = sp.signal.lfilter(coeff, 1.0, x)
         x_normalized = x_filtered / x_filtered.max()
         x_squared = np.square(x_normalized)
-        splited = np.array_split(x_squared, 20)
+        splited = np.array_split(x_squared, 200)
         e_parts = np.empty((0))
         for part in splited:
             e_parts = np.append(e_parts, sp.integrate.simps(part))
